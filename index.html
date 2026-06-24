@@ -1,0 +1,3658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stories of Asia · People Enablement for Asian Business</title>
+<meta name="description" content="Stories of Asia is a people enablement company built for businesses across Asia. Leadership development, AI enablement, and personal branding under one mission.">
+<style>
+/* ============================================
+   STORIES OF ASIA - DESIGN SYSTEM
+   Editorial / infographic aesthetic
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Brand palette - pulled from SOA creatives */
+  --orange: #F05A1A;
+  --orange-bright: #FF7536;
+  --orange-deep: #C8430A;
+  --cream: #FBF3E7;
+  --cream-warm: #F6EAD5;
+  --cream-soft: #FFFAF0;
+  --ink: #14131A;
+  --ink-soft: #2A2832;
+  --muted: #6B6770;
+  --line: #1A1A1F;
+
+  /* Sub-brand accents */
+  --seed: #F05A1A;
+  --pbl: #1F8F8A;
+
+  /* Type */
+  --display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Sizing */
+  --container: 1280px;
+  --gutter: clamp(20px, 4vw, 56px);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--display);
+  font-weight: 400;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* ============================================
+   PAGE FRAME - paper-like backdrop
+   ============================================ */
+
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(251, 243, 231, 0.85);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid rgba(20, 19, 26, 0.08);
+}
+
+.nav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 12px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.nav-logo {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+
+.nav-logo-mark {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--orange-bright), var(--orange-deep));
+  position: relative;
+  box-shadow: 0 0 0 2px var(--cream), 0 0 0 3px var(--orange);
+}
+.nav-logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  transform: rotate(45deg);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.2s var(--ease);
+}
+
+.nav-links a:hover { color: var(--orange); }
+
+.nav-links a.active {
+  color: var(--ink);
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--orange);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: transform 0.2s var(--ease), background 0.2s var(--ease);
+}
+.nav-cta:hover { background: var(--orange); transform: translateY(-1px); }
+.nav-cta .arrow { transition: transform 0.2s var(--ease); }
+.nav-cta:hover .arrow { transform: translateX(3px); }
+
+.nav-toggle { display: none; }
+
+/* ============================================
+   LAYOUT PRIMITIVES
+   ============================================ */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: 2;
+}
+
+section { position: relative; }
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: var(--orange);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  color: var(--ink);
+}
+
+.h-display {
+  font-size: clamp(36px, 4.4vw, 60px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.h-section {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.h-card {
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+
+.serif-accent {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Brush highlight - the signature SOA motif */
+.highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+  white-space: nowrap;
+}
+.highlight::before {
+  content: '';
+  position: absolute;
+  inset: 8% -4% -8% -4%;
+  background: var(--orange);
+  z-index: -1;
+  transform: rotate(-1.5deg) skewX(-4deg);
+  border-radius: 4px 8px 6px 10px;
+}
+.highlight--ink { color: var(--cream); }
+
+.underline-brush {
+  position: relative;
+  display: inline-block;
+}
+.underline-brush::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -6px;
+  height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  transform: scaleY(0.5) skewX(-8deg);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: all 0.25s var(--ease);
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--cream);
+}
+.btn--primary:hover {
+  background: var(--orange);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(240, 90, 26, 0.3);
+}
+
+.btn--orange {
+  background: var(--orange);
+  color: white;
+}
+.btn--orange:hover {
+  background: var(--orange-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(240, 90, 26, 0.35);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn--ghost:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.btn .arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease);
+}
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+  padding: clamp(24px, 3vh, 44px) 0 clamp(32px, 4vh, 56px);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: block;
+  max-width: 880px;
+}
+
+.hero-lede {
+  margin-top: 16px;
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.hero-ctas {
+  margin-top: 24px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Hero decorative graphic - orange "umbrella" of brands */
+.hero-art {
+  position: relative;
+  aspect-ratio: 1 / 1.05;
+  max-width: 500px;
+  margin-left: auto;
+}
+
+/* ============================================
+   BRAND CARDS - the three sub-brands
+   ============================================ */
+
+.brands {
+  padding: clamp(60px, 9vh, 110px) 0;
+  background: var(--cream-warm);
+  border-top: 1px solid rgba(20, 19, 26, 0.08);
+  border-bottom: 1px solid rgba(20, 19, 26, 0.08);
+}
+
+.brands-head {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 760px) {
+  .brand-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.brand-card {
+  background: var(--cream-soft);
+  border: 1px solid rgba(20, 19, 26, 0.1);
+  border-radius: 20px;
+  padding: 36px 32px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -10px rgba(20, 19, 26, 0.15);
+}
+
+.brand-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: var(--accent);
+}
+
+.brand-card[data-brand="seed"] { --accent: var(--seed); }
+.brand-card[data-brand="pbl"] { --accent: var(--pbl); }
+
+.brand-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  color: white;
+}
+
+.brand-name {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.brand-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.brand-desc {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+  flex: 1;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  padding-top: 18px;
+  border-top: 1px solid rgba(20, 19, 26, 0.08);
+}
+.brand-link .arrow { transition: transform 0.2s var(--ease); }
+.brand-card:hover .brand-link .arrow { transform: translateX(4px); }
+.brand-card:hover .brand-link { color: var(--accent); }
+
+/* ============================================
+   SECTION - generic
+   ============================================ */
+
+.section {
+  padding: clamp(70px, 10vh, 130px) 0;
+}
+
+.section-head {
+  max-width: 800px;
+  margin-bottom: 56px;
+}
+
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+.section--ink {
+  background: var(--ink);
+  color: var(--cream);
+}
+.section--ink h2, .section--ink h3 { color: var(--cream); }
+.section--ink .lede { color: rgba(251, 243, 231, 0.75); }
+
+/* ============================================
+   FOUNDER STRIP - Sam Neo
+   ============================================ */
+
+.founder {
+  padding: clamp(80px, 11vh, 140px) 0;
+}
+
+.founder-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 880px) {
+  .founder-grid { grid-template-columns: 0.85fr 1.15fr; gap: 80px; }
+}
+
+.founder-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--cream-warm);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(20, 19, 26, 0.1);
+}
+
+.founder-portrait::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 60%;
+  height: 18%;
+  background: var(--orange);
+  border-radius: 24px;
+  z-index: -1;
+}
+
+.founder-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+
+.founder-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(20, 19, 26, 0.15);
+}
+
+.founder-meta-name {
+  font-weight: 700;
+  font-size: 18px;
+}
+.founder-meta-role {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ============================================
+   PROOF - case study highlight
+   ============================================ */
+
+.proof {
+  padding: clamp(70px, 10vh, 130px) 0;
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.proof h2, .proof h3 { color: var(--cream); }
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .proof-grid { grid-template-columns: 1fr 1fr; gap: 80px; }
+}
+
+.proof-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange-bright);
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.proof-stat {
+  font-family: var(--display);
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.proof-stat sup { font-size: 0.5em; font-weight: 600; }
+
+.proof-source {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: rgba(251, 243, 231, 0.6);
+  text-transform: uppercase;
+}
+
+.proof-headline {
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+}
+
+.proof-body {
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(251, 243, 231, 0.75);
+  margin-bottom: 32px;
+}
+
+/* ============================================
+   NEWSLETTER
+   ============================================ */
+
+.newsletter {
+  padding: clamp(70px, 10vh, 130px) 0;
+  background: var(--cream-warm);
+  border-top: 1px solid rgba(20, 19, 26, 0.08);
+}
+
+.newsletter-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  background: var(--cream-soft);
+  padding: 8px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  margin-top: 36px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 14px 20px;
+  font-family: var(--display);
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+}
+
+.newsletter-form input::placeholder { color: var(--muted); }
+
+.newsletter-form button {
+  padding: 14px 24px;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s var(--ease);
+}
+.newsletter-form button:hover { background: var(--orange); }
+
+.newsletter-meta {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 80px 0 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 720px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 24px;
+  }
+}
+
+.footer-brand {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-brand .nav-logo-mark { box-shadow: 0 0 0 2px var(--ink), 0 0 0 3px var(--orange); }
+
+.footer-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.4;
+  color: rgba(251, 243, 231, 0.7);
+  margin-bottom: 24px;
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange-bright);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  font-size: 15px;
+  color: rgba(251, 243, 231, 0.8);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--orange-bright); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(251, 243, 231, 0.1);
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: rgba(251, 243, 231, 0.5);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+.footer-social a {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(251, 243, 231, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.footer-social a:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+/* ============================================
+   BELIEF STRIP - manifesto-style row
+   ============================================ */
+
+.belief {
+  padding: 80px 0;
+  background: var(--orange);
+  color: var(--ink);
+  overflow: hidden;
+  position: relative;
+}
+
+.belief-track {
+  display: flex;
+  gap: 64px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 84px);
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  animation: marquee 32s linear infinite;
+}
+
+.belief-track span { display: inline-flex; align-items: center; gap: 64px; }
+.belief-track .dot {
+  width: 14px; height: 14px;
+  background: var(--ink);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ============================================
+   STATS ROW
+   ============================================ */
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  padding: 56px 0;
+  border-top: 1px solid rgba(20, 19, 26, 0.1);
+  border-bottom: 1px solid rgba(20, 19, 26, 0.1);
+}
+
+.stat-num {
+  font-family: var(--display);
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--orange);
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ============================================
+   BLOG / CASE STUDIES - cards
+   ============================================ */
+
+.post-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+@media (min-width: 720px) { .post-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .post-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.post-card {
+  background: var(--cream-soft);
+  border: 1px solid rgba(20, 19, 26, 0.1);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -12px rgba(20, 19, 26, 0.18);
+}
+
+.post-card-img {
+  aspect-ratio: 16 / 10;
+  background: var(--cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+
+.post-card-body {
+  padding: 24px 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.post-card-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+}
+
+.post-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.post-card p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.post-card-meta {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(20, 19, 26, 0.08);
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ============================================
+   PAGE HEADER - for sub-pages
+   ============================================ */
+
+.page-header {
+  padding: clamp(60px, 9vh, 100px) 0 clamp(40px, 6vh, 80px);
+  position: relative;
+}
+
+.page-header h1 {
+  font-size: clamp(48px, 7vw, 92px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.page-header .lede { margin-top: 24px; }
+
+.breadcrumb {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb span { color: var(--ink); }
+
+/* ============================================
+   FORM - contact
+   ============================================ */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+
+.form-row { display: flex; flex-direction: column; gap: 8px; }
+.form-row.full { grid-column: 1 / -1; }
+
+.form-row label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.form-row input, .form-row select, .form-row textarea {
+  padding: 14px 16px;
+  border: 1.5px solid rgba(20, 19, 26, 0.15);
+  border-radius: 12px;
+  font-family: var(--display);
+  font-size: 16px;
+  background: var(--cream-soft);
+  color: var(--ink);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 4px rgba(240, 90, 26, 0.12);
+}
+
+.form-row textarea { resize: vertical; min-height: 140px; }
+
+/* ============================================
+   ANIMATIONS - reveal on load
+   ============================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: reveal 0.9s var(--ease) forwards;
+}
+.reveal-1 { animation-delay: 0.05s; }
+.reveal-2 { animation-delay: 0.15s; }
+.reveal-3 { animation-delay: 0.25s; }
+.reveal-4 { animation-delay: 0.35s; }
+.reveal-5 { animation-delay: 0.45s; }
+
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE NAV
+   ============================================ */
+
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+  .nav-cta { padding: 10px 16px; font-size: 13px; }
+}
+
+/* ============================================
+   UTILS
+   ============================================ */
+
+.mt-md { margin-top: 24px; }
+.mt-lg { margin-top: 48px; }
+.center { text-align: center; }
+.flex { display: flex; }
+.gap-md { gap: 16px; }
+
+/* ============================================
+   BRAND LOGO SLOT (placeholder for client logos)
+   ============================================ */
+
+.brand-logo-slot {
+  height: 64px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 16px;
+  border: 2px dashed rgba(20, 19, 26, 0.18);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(240,90,26,0.04) 0%, rgba(240,90,26,0) 100%),
+    rgba(20, 19, 26, 0.015);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-card:hover .brand-logo-slot {
+  border-color: var(--accent);
+  background: rgba(240, 90, 26, 0.04);
+}
+
+.brand-logo-slot[data-brand="pbl"]:hover { background: rgba(31, 143, 138, 0.05); }
+
+.brand-logo-slot .logo-placeholder {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 19, 26, 0.42);
+  font-weight: 500;
+}
+
+/* When you replace the placeholder with <img>, this is the styling: */
+.brand-logo-slot img.brand-logo,
+.brand-logo {
+  max-height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ============================================
+   GIFT FORM SECTION - interactive lead magnet
+   ============================================ */
+
+.gift {
+  padding: clamp(70px, 11vh, 130px) 0;
+  background:
+    radial-gradient(ellipse 800px 400px at 50% -10%, rgba(240, 90, 26, 0.08), transparent 60%),
+    var(--cream-warm);
+  border-top: 1px solid rgba(20, 19, 26, 0.08);
+  border-bottom: 1px solid rgba(20, 19, 26, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* decorative dotted backdrop */
+.gift::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(240, 90, 26, 0.18) 1px, transparent 1.5px);
+  background-size: 32px 32px;
+  background-position: 0 0;
+  opacity: 0.25;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.gift-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.gift-stage {
+  transition: opacity 0.4s var(--ease);
+}
+
+.gift-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.gift-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.gift-step-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 22px;
+}
+
+.gift-step-label .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* TILES */
+.gift-tiles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .gift-tiles { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1000px) {
+  .gift-tiles { grid-template-columns: repeat(4, 1fr); }
+}
+
+.gift-tiles.shake {
+  animation: tilesShake 0.5s var(--ease);
+}
+
+@keyframes tilesShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.gift-tile {
+  appearance: none;
+  background: var(--cream-soft);
+  border: 1.5px solid rgba(20, 19, 26, 0.12);
+  border-radius: 16px;
+  padding: 24px 22px 22px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: var(--display);
+  color: var(--ink);
+  min-height: 140px;
+}
+
+.gift-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--orange);
+  box-shadow: 0 12px 28px -10px rgba(240, 90, 26, 0.25);
+}
+
+.gift-tile.selected {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px -8px rgba(240, 90, 26, 0.5);
+}
+
+.gift-tile.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: white;
+  color: var(--orange);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: tickPop 0.3s var(--ease);
+}
+
+@keyframes tickPop {
+  from { transform: scale(0); }
+  60% { transform: scale(1.2); }
+  to { transform: scale(1); }
+}
+
+.tile-ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(240, 90, 26, 0.12);
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s var(--ease);
+}
+
+.gift-tile.selected .tile-ico {
+  background: rgba(255, 255, 255, 0.22);
+  color: white;
+}
+
+.tile-text {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* STEP 2 - hidden until tile picked */
+.gift-step--2 {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: max-height 0.5s var(--ease), opacity 0.4s var(--ease) 0.1s;
+}
+
+.gift-step--2.revealed {
+  max-height: 600px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gift-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--cream-soft);
+  padding: 28px;
+  border-radius: 18px;
+  border: 1px solid rgba(20, 19, 26, 0.1);
+}
+
+.gift-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gift-field label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.gift-field .opt {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--display);
+  color: rgba(107, 103, 112, 0.7);
+  font-style: italic;
+}
+
+.gift-field input {
+  padding: 14px 16px;
+  border: 1.5px solid rgba(20, 19, 26, 0.15);
+  border-radius: 12px;
+  font-family: var(--display);
+  font-size: 16px;
+  background: var(--cream);
+  color: var(--ink);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.gift-field input:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 4px rgba(240, 90, 26, 0.12);
+}
+
+.gift-submit {
+  margin-top: 8px;
+  padding: 18px 28px;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 999px;
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  width: 100%;
+}
+
+.gift-submit:hover {
+  background: var(--orange);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(240, 90, 26, 0.35);
+}
+
+.gift-submit .arrow { transition: transform 0.2s var(--ease); }
+.gift-submit:hover .arrow { transform: translateX(4px); }
+
+.gift-fineprint {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* SUCCESS STATE */
+.gift-stage--success {
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  text-align: center;
+}
+
+.gift-stage--success.revealed {
+  opacity: 1;
+}
+
+.gift-box-stage {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 32px;
+  --gift-accent: #F05A1A;
+}
+
+.gift-box {
+  width: 100%;
+  height: 100%;
+  transform-origin: center bottom;
+  animation: boxAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             boxShake 0.4s var(--ease) 0.6s;
+}
+
+@keyframes boxAppear {
+  from { transform: scale(0) translateY(40px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes boxShake {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-4deg); }
+  40% { transform: rotate(4deg); }
+  60% { transform: rotate(-3deg); }
+  80% { transform: rotate(3deg); }
+}
+
+.gift-box .box-lid {
+  transform-origin: center bottom;
+  animation: lidLift 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+}
+
+@keyframes lidLift {
+  0% { transform: translateY(0) rotate(0); }
+  100% { transform: translateY(-50px) rotate(-12deg); opacity: 0.85; }
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 22px;
+  color: var(--orange);
+  opacity: 0;
+  pointer-events: none;
+  animation: sparkle 1.2s ease-out 1.4s forwards;
+}
+
+.sparkle.s1 { top: 10%; left: 20%; font-size: 18px; animation-delay: 1.3s; }
+.sparkle.s2 { top: 18%; right: 22%; font-size: 26px; animation-delay: 1.5s; }
+.sparkle.s3 { top: 38%; left: 5%; font-size: 16px; animation-delay: 1.4s; }
+.sparkle.s4 { top: 45%; right: 8%; font-size: 22px; animation-delay: 1.6s; }
+.sparkle.s5 { top: 5%; left: 50%; font-size: 14px; animation-delay: 1.7s; }
+.sparkle.s6 { bottom: 28%; left: 12%; font-size: 18px; animation-delay: 1.8s; color: #FF7536; }
+.sparkle.s7 { bottom: 18%; right: 14%; font-size: 20px; animation-delay: 1.5s; color: #FF7536; }
+.sparkle.s8 { top: 28%; left: 42%; font-size: 14px; animation-delay: 1.9s; }
+
+@keyframes sparkle {
+  0% { opacity: 0; transform: scale(0) rotate(0); }
+  50% { opacity: 1; transform: scale(1.3) rotate(180deg); }
+  100% { opacity: 0.85; transform: scale(1) rotate(360deg); }
+}
+
+.gift-result .gift-name {
+  opacity: 0;
+  animation: resultRise 0.6s var(--ease) 1.6s forwards;
+}
+.gift-result .gift-sub,
+.gift-result .gift-also,
+.gift-result .gift-reset,
+.gift-result > .eyebrow {
+  opacity: 0;
+  animation: resultRise 0.6s var(--ease) forwards;
+}
+.gift-result > .eyebrow { animation-delay: 1.5s; }
+.gift-result .gift-sub { animation-delay: 1.8s; }
+.gift-result .gift-also { animation-delay: 2.0s; }
+.gift-result .gift-reset { animation-delay: 2.2s; }
+
+@keyframes resultRise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.gift-also {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: var(--cream-soft);
+  border: 1px solid rgba(20, 19, 26, 0.1);
+  border-radius: 16px;
+  margin: 0 auto 32px;
+  text-align: left;
+  max-width: 460px;
+}
+
+.gift-also-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.gift-also-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.gift-also-title span {
+  color: var(--orange);
+  font-family: var(--mono);
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.gift-also-sub {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.gift-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  border-radius: 999px;
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.gift-reset:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* ============================================
+   NAV LOGO SLOT (placeholder for SOA logo)
+   ============================================ */
+
+.nav-logo-slot {
+  height: 40px;
+  min-width: 140px;
+  padding: 6px 16px;
+  border: 1.5px dashed rgba(20, 19, 26, 0.22);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, rgba(240,90,26,0.06) 0%, rgba(240,90,26,0) 100%),
+    rgba(20, 19, 26, 0.015);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.nav-logo:hover .nav-logo-slot {
+  border-color: var(--orange);
+  background: rgba(240, 90, 26, 0.06);
+}
+
+.nav-logo-slot-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 19, 26, 0.42);
+  font-weight: 500;
+}
+
+/* When you swap to a real image */
+.nav-logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+/* ============================================
+   FOOTER - 3-column variant
+   ============================================ */
+
+.footer-grid--3 {
+  grid-template-columns: 1.6fr 1fr 1fr;
+}
+
+@media (max-width: 720px) {
+  .footer-grid--3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================
+   HERO URGENCY / SCARCITY LINE
+   ============================================ */
+
+.hero-urgency {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: rgba(240, 90, 26, 0.08);
+  border: 1px solid rgba(240, 90, 26, 0.18);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  position: relative;
+}
+.pulse-dot::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--orange);
+  opacity: 0.4;
+  animation: pulseRing 1.8s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ============================================
+   TRUST BAR - Client + Media logos
+   ============================================ */
+
+.trust-bar {
+  margin-top: 64px;
+  padding-top: 56px;
+  border-top: 1px solid rgba(20, 19, 26, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.trust-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.trust-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: center;
+}
+
+.trust-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px 28px;
+}
+
+.trust-logo-slot {
+  height: 56px;
+  min-width: 130px;
+  padding: 8px 18px;
+  border: 1.5px dashed rgba(20, 19, 26, 0.18);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 19, 26, 0.015);
+  transition: border-color 0.2s var(--ease);
+}
+
+.trust-logo-slot:hover {
+  border-color: rgba(240, 90, 26, 0.5);
+  background: rgba(240, 90, 26, 0.04);
+}
+
+.trust-logo-slot.media {
+  height: 44px;
+  min-width: 110px;
+  padding: 6px 14px;
+}
+
+.trust-logo-slot span {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 19, 26, 0.4);
+  font-weight: 500;
+}
+
+.trust-logo {
+  max-height: 36px;
+  max-width: 140px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.trust-divider {
+  height: 1px;
+  background: rgba(20, 19, 26, 0.06);
+  margin: 8px 0;
+}
+
+/* ============================================
+   PROOF SECTION - placeholder case studies (in production)
+   ============================================ */
+
+.proof-v2 {
+  padding: clamp(80px, 12vh, 140px) 0;
+  background:
+    radial-gradient(ellipse 1000px 500px at 50% 0%, rgba(240, 90, 26, 0.15), transparent 70%),
+    var(--ink);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.proof-v2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(240, 90, 26, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.5;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.proof-v2 .container { position: relative; z-index: 2; }
+.proof-v2 .section-head { margin-bottom: 64px; }
+
+.proof-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+@media (min-width: 880px) {
+  .proof-cards { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+.proof-card {
+  background: var(--cream-soft);
+  color: var(--ink);
+  border-radius: 24px;
+  padding: 40px 36px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform 0.3s var(--ease);
+}
+
+.proof-card:hover {
+  transform: translateY(-6px);
+}
+
+.proof-card--dark {
+  background: #1A1A24;
+  color: var(--cream);
+  border: 1px solid rgba(251, 243, 231, 0.1);
+}
+
+.proof-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.proof-card-logo-slot {
+  height: 44px;
+  min-width: 110px;
+  padding: 6px 14px;
+  border: 1.5px dashed rgba(20, 19, 26, 0.22);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 19, 26, 0.02);
+}
+
+.proof-card-logo-slot.dark {
+  border-color: rgba(251, 243, 231, 0.25);
+  background: rgba(251, 243, 231, 0.04);
+}
+
+.proof-card-logo-slot span {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 19, 26, 0.42);
+}
+
+.proof-card-logo-slot.dark span { color: rgba(251, 243, 231, 0.55); }
+
+.proof-card-logo {
+  max-height: 32px;
+  width: auto;
+  display: block;
+}
+
+.proof-card-brand {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  background: rgba(240, 90, 26, 0.12);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+
+.proof-card-stat {
+  font-family: var(--display);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--orange);
+  margin-top: 12px;
+}
+
+.proof-card-source {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.proof-card-body {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* Quote block - case-study quote */
+.proof-card-quote {
+  margin-top: auto;
+  padding: 24px;
+  background: var(--cream-warm);
+  border-radius: 14px;
+  border-left: 4px solid var(--orange);
+  position: relative;
+}
+
+.proof-card-quote .quote-mark {
+  position: absolute;
+  top: -8px;
+  left: 16px;
+  font-family: var(--serif);
+  font-size: 64px;
+  font-style: italic;
+  color: var(--orange);
+  line-height: 1;
+}
+
+.proof-card-quote .quote-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 12px 0 14px;
+}
+
+.proof-card-quote .quote-attr {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* Headline block - case-study highlight */
+.proof-card-headline {
+  margin-top: auto;
+  padding: 24px;
+  background: rgba(240, 90, 26, 0.12);
+  border-radius: 14px;
+  border-left: 4px solid var(--orange);
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+
+/* Proof mini-stats row */
+.proof-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  padding: 40px 0;
+  margin-top: 32px;
+  border-top: 1px solid rgba(251, 243, 231, 0.12);
+  border-bottom: 1px solid rgba(251, 243, 231, 0.12);
+}
+
+@media (min-width: 760px) {
+  .proof-stats { grid-template-columns: repeat(4, 1fr); }
+}
+
+.proof-stat-num {
+  font-family: var(--display);
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--orange-bright);
+  margin-bottom: 8px;
+}
+
+.proof-stat-label {
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(251, 243, 231, 0.7);
+}
+
+.proof-cta {
+  margin-top: 48px;
+  text-align: center;
+}
+
+/* Hero - small adjustments for new CTA layout */
+.h-display span[style*="display: block"] {
+  color: var(--orange);
+}
+
+/* ============================================
+   PLACEHOLDER CASE STUDY CARDS (in production)
+   ============================================ */
+
+.proof-card--placeholder {
+  min-height: 380px;
+  justify-content: space-between;
+}
+
+.proof-card-placeholder-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 0;
+}
+
+.placeholder-line {
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 19, 26, 0.06) 0%,
+    rgba(20, 19, 26, 0.1) 50%,
+    rgba(20, 19, 26, 0.06) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+.placeholder-line.line-1 { width: 92%; }
+.placeholder-line.line-2 { width: 78%; }
+.placeholder-line.line-3 { width: 64%; height: 32px; margin-top: 8px; }
+
+.proof-card-placeholder-body.dark .placeholder-line {
+  background: linear-gradient(
+    90deg,
+    rgba(251, 243, 231, 0.05) 0%,
+    rgba(251, 243, 231, 0.1) 50%,
+    rgba(251, 243, 231, 0.05) 100%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 200% 0; }
+  50% { background-position: -200% 0; }
+}
+
+.proof-card-coming {
+  margin-top: auto;
+  padding: 22px;
+  background: var(--cream-warm);
+  border-radius: 14px;
+  border-left: 4px solid var(--orange);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proof-card-coming.dark {
+  background: rgba(255, 117, 54, 0.06);
+  border-left-color: var(--orange-bright);
+}
+
+.coming-tag {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 5px 12px;
+  background: rgba(240, 90, 26, 0.14);
+  color: var(--orange);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.coming-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ============================================
+   STORY SECTION - origin narrative + founding card
+   ============================================ */
+
+.story {
+  padding: clamp(80px, 12vh, 140px) 0;
+  position: relative;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+@media (min-width: 880px) {
+  .story-grid { grid-template-columns: 1.1fr 0.9fr; gap: 80px; }
+}
+
+.story-h {
+  margin-bottom: 36px;
+}
+
+.story-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+
+.story-prose-emphasis {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink);
+  border-left: 3px solid var(--orange);
+  padding-left: 20px;
+  margin: 12px 0;
+}
+
+/* ===== FOUNDING CARD - flip interaction ===== */
+
+.founding-card-wrap {
+  position: relative;
+  perspective: 1400px;
+  margin: 0 auto;
+  max-width: 380px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+.founding-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.7, 0.2, 0.2, 1);
+  font-family: inherit;
+}
+
+.founding-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.founding-card:hover:not(.flipped) {
+  transform: translateY(-6px) rotate(-1deg);
+}
+
+.founding-card-front,
+.founding-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 36px 32px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow: hidden;
+}
+
+.founding-card-front {
+  background: var(--cream-soft);
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  box-shadow:
+    0 1px 0 rgba(20,19,26,0.04),
+    0 14px 32px -16px rgba(20,19,26,0.18);
+  background-image:
+    radial-gradient(rgba(240,90,26,0.18) 1px, transparent 1.5px);
+  background-size: 26px 26px;
+  background-position: 0 0;
+}
+
+.founding-card-front::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--cream-soft) 0%, rgba(251,250,240,0.6) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+.founding-card-front > * {
+  position: relative;
+  z-index: 1;
+}
+
+.founding-card-back {
+  background: var(--ink);
+  color: var(--cream);
+  transform: rotateY(180deg);
+  border: 1.5px solid var(--ink);
+}
+
+.founding-card-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.founding-card-question {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(32px, 3.4vw, 42px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: auto;
+}
+
+.founding-card-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  width: max-content;
+  transition: background 0.2s var(--ease);
+}
+
+.founding-card:hover .founding-card-hint {
+  background: var(--orange);
+}
+
+.founding-card-arrow {
+  display: inline-block;
+  transform: scaleX(-1);
+  font-size: 16px;
+}
+
+.founding-card-deco {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: 60px;
+  height: 60px;
+  color: var(--orange);
+  opacity: 0.6;
+}
+
+.founding-year {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(72px, 9vw, 110px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--orange-bright);
+  margin-bottom: 18px;
+}
+
+.founding-card-story {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(251,243,231,0.85);
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(251,243,231,0.15);
+}
+
+.founding-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: rgba(251,243,231,0.65);
+}
+
+.timeline-step strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.timeline-step.active {
+  color: var(--orange-bright);
+}
+
+.timeline-step.active strong {
+  color: var(--orange-bright);
+}
+
+.timeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(251,243,231,0.4);
+  flex-shrink: 0;
+}
+
+.timeline-step.active .timeline-dot {
+  background: var(--orange-bright);
+  box-shadow: 0 0 0 4px rgba(255, 117, 54, 0.2);
+  animation: timelinePulse 2s ease-in-out infinite;
+}
+
+@keyframes timelinePulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(255, 117, 54, 0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(255, 117, 54, 0); }
+}
+
+.founding-card-shadow {
+  position: absolute;
+  bottom: -8%;
+  left: 8%;
+  right: 8%;
+  height: 18%;
+  background: var(--orange);
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0.6;
+  filter: blur(20px);
+}
+
+/* ============================================
+   MISSION - poster moment
+   ============================================ */
+
+.mission {
+  padding: clamp(90px, 14vh, 160px) 0;
+  background:
+    radial-gradient(ellipse 700px 400px at 50% 50%, rgba(240, 90, 26, 0.18), transparent 70%),
+    var(--ink);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(20, 19, 26, 0.08);
+  border-bottom: 1px solid rgba(20, 19, 26, 0.08);
+}
+
+.mission::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(255, 117, 54, 0.08) 1px, transparent 1.5px);
+  background-size: 30px 30px;
+  opacity: 0.6;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.mission-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-statement {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  margin-top: 32px;
+}
+
+.mission-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mission-star {
+  position: absolute;
+  color: var(--orange-bright);
+  font-size: 22px;
+  opacity: 0;
+  animation: missionStar 4s ease-in-out infinite;
+}
+
+.mission-star.s1 { top: 10%; left: 8%; animation-delay: 0s; font-size: 18px; }
+.mission-star.s2 { top: 18%; right: 12%; animation-delay: 1s; font-size: 24px; }
+.mission-star.s3 { bottom: 16%; left: 14%; animation-delay: 2s; font-size: 20px; }
+.mission-star.s4 { bottom: 12%; right: 8%; animation-delay: 1.5s; font-size: 16px; }
+
+@keyframes missionStar {
+  0%, 100% { opacity: 0; transform: scale(0.6) rotate(0); }
+  50% { opacity: 0.9; transform: scale(1) rotate(180deg); }
+}
+
+/* ============================================
+   COMMUNITY SCRAPBOOK GALLERY
+   ============================================ */
+
+.community {
+  padding: clamp(80px, 12vh, 140px) 0;
+  background: var(--cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+
+.community .section-head {
+  margin-bottom: 72px;
+}
+
+/* SCRAPBOOK - asymmetric polaroid layout */
+
+.scrapbook {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+@media (min-width: 760px) {
+  .scrapbook { grid-template-columns: repeat(3, 1fr); gap: 40px 28px; }
+}
+
+.polaroid {
+  background: white;
+  padding: 14px 14px 50px;
+  border-radius: 4px;
+  box-shadow:
+    0 2px 4px rgba(20,19,26,0.06),
+    0 12px 30px -8px rgba(20,19,26,0.15);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  cursor: pointer;
+  position: relative;
+}
+
+/* asymmetric rotations for the scrapbook feel */
+.polaroid--1 { transform: rotate(-3deg); }
+.polaroid--2 { transform: rotate(2deg) translateY(20px); }
+.polaroid--3 { transform: rotate(-1.5deg) translateY(-10px); }
+.polaroid--4 { transform: rotate(3deg) translateY(15px); }
+.polaroid--5 { transform: rotate(-2deg) translateY(-5px); }
+.polaroid--6 { transform: rotate(1.5deg) translateY(25px); }
+
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-12px) scale(1.04);
+  box-shadow:
+    0 6px 10px rgba(20,19,26,0.08),
+    0 24px 60px -12px rgba(20,19,26,0.28);
+  z-index: 2;
+}
+
+/* tape effect at top of each polaroid */
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 22px;
+  background: rgba(240, 90, 26, 0.25);
+  border-radius: 1px;
+  z-index: 1;
+  box-shadow: 0 1px 2px rgba(20,19,26,0.08);
+}
+
+.polaroid--2::before { transform: translateX(-50%) rotate(3deg); background: rgba(31, 143, 138, 0.3); }
+.polaroid--3::before { transform: translateX(-50%) rotate(-3deg); background: rgba(30, 91, 186, 0.25); }
+.polaroid--4::before { transform: translateX(-50%) rotate(2deg); background: rgba(240, 90, 26, 0.25); }
+.polaroid--5::before { transform: translateX(-50%) rotate(-1deg); background: rgba(31, 143, 138, 0.3); }
+.polaroid--6::before { transform: translateX(-50%) rotate(4deg); background: rgba(240, 90, 26, 0.25); }
+
+.polaroid-photo {
+  aspect-ratio: 1 / 1;
+  background: var(--cream-warm);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(135deg, rgba(240,90,26,0.04) 0%, rgba(240,90,26,0) 100%),
+    var(--cream-warm);
+  border: 1.5px dashed rgba(20,19,26,0.18);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-placeholder span {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(20,19,26,0.4);
+  font-weight: 500;
+}
+
+/* When you swap to real images: <img src="..." class="polaroid-img"> */
+.polaroid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-caption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  text-align: center;
+  color: var(--ink);
+  line-height: 1.3;
+  padding-top: 10px;
+}
+
+/* hover reveal: full story caption */
+.polaroid::after {
+  content: attr(data-caption);
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  bottom: -56px;
+  padding: 12px 16px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  box-shadow: 0 8px 20px rgba(20,19,26,0.25);
+  z-index: 3;
+}
+
+.polaroid:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scrapbook footer note */
+.scrapbook-note {
+  max-width: 600px;
+  margin: 80px auto 0;
+  background: var(--cream-soft);
+  border: 1px dashed rgba(20,19,26,0.2);
+  border-radius: 12px;
+  padding: 28px 32px;
+  text-align: center;
+  position: relative;
+  transform: rotate(-0.5deg);
+}
+
+.scrapbook-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+  width: 80px;
+  height: 22px;
+  background: rgba(240, 90, 26, 0.3);
+  border-radius: 1px;
+}
+
+.scrapbook-note p {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.scrapbook-note em {
+  font-family: var(--serif);
+  font-size: 19px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.scrapbook-note a {
+  color: var(--orange);
+  font-weight: 600;
+  border-bottom: 1.5px solid var(--orange);
+}
+
+.scrapbook-note a:hover {
+  color: var(--orange-deep);
+}
+
+/* ============================================
+   FOUNDING INFO - static visible block (no flip)
+   ============================================ */
+
+.founding-info {
+  position: relative;
+}
+
+.founding-info-card {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 20px;
+  padding: 40px 36px;
+  position: relative;
+  box-shadow:
+    0 4px 8px rgba(20,19,26,0.06),
+    0 24px 60px -16px rgba(20,19,26,0.22);
+}
+
+.founding-info-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background-image:
+    radial-gradient(rgba(255, 117, 54, 0.08) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at top right, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, black 30%, transparent 80%);
+}
+
+.founding-info-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.founding-info-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange-bright);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.founding-year-static {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(72px, 9vw, 108px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--orange-bright);
+  margin-bottom: 24px;
+}
+
+.founding-info-story {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(251,243,231,0.88);
+  margin-bottom: 28px;
+}
+
+.founding-info-story em {
+  color: var(--orange-bright);
+  font-style: italic;
+}
+
+.founding-info-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 28px 0 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(251,243,231,0.55);
+}
+
+.founding-info-divider::before,
+.founding-info-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(251,243,231,0.18);
+}
+
+/* ============================================
+   COMMUNITY warm signoff line
+   ============================================ */
+
+.community-signoff {
+  margin: 64px auto 0;
+  max-width: 600px;
+  text-align: center;
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.community-signoff .serif-accent {
+  color: var(--orange);
+  font-size: 1.1em;
+}
+
+/* Polaroid caption - hide if any are still leftover */
+.polaroid-caption {
+  display: none;
+}
+
+/* Stronger warm gradient on hero (subtle) */
+.hero {
+  background: linear-gradient(180deg, rgba(255, 117, 54, 0.04) 0%, transparent 40%);
+}
+
+/* Slightly larger polaroids when there are no captions to balance */
+.polaroid {
+  padding: 14px 14px 18px;
+}
+
+/* ============================================
+   FOUNDING CARD - community line + creed
+   ============================================ */
+
+.founding-community-line {
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(251, 243, 231, 0.78);
+  margin-bottom: 28px;
+}
+
+.founding-creed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 28px 16px 4px;
+  border-top: 1px solid rgba(251, 243, 231, 0.12);
+  margin-top: 4px;
+  position: relative;
+}
+
+.creed-mark {
+  font-size: 18px;
+  color: var(--orange-bright);
+  opacity: 0.7;
+  flex-shrink: 0;
+  animation: creedTwinkle 3s ease-in-out infinite;
+}
+
+.creed-mark:last-child {
+  animation-delay: 1.5s;
+}
+
+@keyframes creedTwinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1) rotate(180deg); }
+}
+
+.creed-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.35;
+  color: var(--cream);
+  letter-spacing: -0.005em;
+}
+
+.creed-good {
+  color: var(--orange-bright);
+  font-weight: 500;
+}
+
+.creed-attracts {
+  position: relative;
+  display: inline-block;
+}
+
+.creed-attracts::after {
+  content: '';
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  bottom: -2px;
+  height: 3px;
+  background: var(--orange);
+  border-radius: 50%;
+  transform: scaleY(0.6) skewX(-8deg);
+  opacity: 0.7;
+}
+
+/* ============================================
+   GLOBAL TEXT SIZE BUMP - bigger, more readable
+   Applied at end so it overrides earlier rules.
+   ============================================ */
+
+/* Base body up from 16px (default) to 17.5px */
+body {
+  font-size: 17.5px;
+}
+
+/* Lede paragraphs everywhere */
+.lede {
+  font-size: clamp(18px, 1.55vw, 22px) !important;
+  line-height: 1.55;
+}
+
+.hero-lede {
+  font-size: clamp(17px, 1.35vw, 20px) !important;
+  line-height: 1.55;
+}
+
+/* H1 / display */
+.h-display {
+  font-size: clamp(40px, 5vw, 68px);
+}
+
+/* H2 / section heads */
+.h-section {
+  font-size: clamp(38px, 5.4vw, 68px);
+}
+
+.h-card {
+  font-size: clamp(26px, 2.6vw, 34px);
+}
+
+/* Eyebrows */
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+}
+
+/* Story section prose */
+.story-prose {
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.story-prose-emphasis {
+  font-size: 24px;
+  line-height: 1.45;
+}
+
+/* Brand cards */
+.brand-name {
+  font-size: 32px;
+}
+
+.brand-tag {
+  font-size: 12px;
+}
+
+.brand-desc {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.brand-link {
+  font-size: 16px;
+}
+
+/* Founding info card */
+.founding-info-eyebrow {
+  font-size: 12px;
+}
+
+.founding-year-static {
+  font-size: clamp(80px, 10vw, 120px);
+}
+
+.founding-info-story {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.founding-info-divider {
+  font-size: 12px;
+}
+
+.founding-community-line {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.creed-line {
+  font-size: 26px;
+  line-height: 1.35;
+}
+
+/* Community section signoff */
+.community-signoff {
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+/* Mission statement - sized so each of the 3 lines fits on one row */
+.mission-statement {
+  font-size: clamp(36px, 5vw, 76px);
+  line-height: 1.15;
+  text-align: center;
+  text-wrap: balance;
+}
+.mission-statement br { display: block; }
+
+/* Gift form */
+.gift-step-label {
+  font-size: 20px;
+}
+
+.tile-text {
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.gift-field label {
+  font-size: 12px;
+}
+
+.gift-field input {
+  font-size: 17px;
+  padding: 16px 18px;
+}
+
+.gift-submit {
+  font-size: 17px;
+  padding: 19px 30px;
+}
+
+.gift-fineprint {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.gift-name {
+  font-size: clamp(36px, 5vw, 56px);
+}
+
+/* Nav links */
+.nav-links a {
+  font-size: 16px;
+}
+
+.nav-cta {
+  font-size: 15px;
+  padding: 12px 22px;
+}
+
+/* Buttons */
+.btn {
+  font-size: 16px;
+  padding: 17px 30px;
+}
+
+/* Trust bar */
+.trust-label {
+  font-size: 12px;
+}
+
+/* Footer */
+.footer-tagline {
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+.footer-col h4 {
+  font-size: 13px;
+}
+
+.footer-col a {
+  font-size: 16px;
+}
+
+.footer-bottom {
+  font-size: 14px;
+}
+
+/* Belief marquee - leave as is, already huge */
+
+/* ============================================
+   BRAND GRID - 2-column variant
+   ============================================ */
+
+.brand-grid--two {
+  grid-template-columns: 1fr;
+  max-width: 900px;
+  margin: 0 auto;
+  gap: 28px;
+}
+
+@media (min-width: 760px) {
+  .brand-grid--two {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+.brand-grid--two .brand-card {
+  padding: 44px 38px 36px;
+}
+
+/* ============================================
+   SOA SOCIAL MENTORING SECTION
+   ============================================ */
+
+.mentoring {
+  padding: clamp(80px, 12vh, 140px) 0;
+  background:
+    radial-gradient(ellipse 800px 400px at 50% 0%, rgba(240, 90, 26, 0.10), transparent 60%),
+    var(--cream-warm);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(20, 19, 26, 0.06);
+  border-bottom: 1px solid rgba(20, 19, 26, 0.06);
+}
+
+.mentoring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(240, 90, 26, 0.10) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  opacity: 0.5;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+}
+
+.mentoring-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.mentoring-head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 72px;
+}
+
+.mentoring-pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 800px) {
+  .mentoring-pillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+.pillar {
+  background: var(--cream-soft);
+  border: 1px solid rgba(20, 19, 26, 0.08);
+  border-radius: 20px;
+  padding: 36px 32px;
+  text-align: left;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  position: relative;
+}
+
+.pillar:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -14px rgba(20, 19, 26, 0.16);
+}
+
+.pillar-ico {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(240, 90, 26, 0.12);
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: background 0.3s var(--ease);
+}
+
+.pillar:hover .pillar-ico {
+  background: var(--orange);
+  color: white;
+}
+
+.pillar-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.pillar-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.mentoring-cta {
+  margin-top: 56px;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<div class="paper-grain"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <!-- LOGO SLOT - replace with: <img src="soa-logo.png" alt="Stories of Asia" class="nav-logo-img"> -->
+      <div class="nav-logo-slot">
+        <span class="nav-logo-slot-label">SOA logo</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="seed.html">SEED Academy</a></li>
+      <li><a href="pbl.html">Personal Brand Lab</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">
+      Work with us <span class="arrow">→</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow reveal reveal-1">Hello, we're Stories of Asia</div>
+        <h1 class="h-display reveal reveal-2" style="margin-top: 14px;">
+          We empower the people of <span class="highlight highlight--ink">Asia</span> through <span class="serif-accent" style="color: var(--orange);">storytelling</span>, leadership development, and technology.
+        </h1>
+        <p class="hero-lede reveal reveal-3">
+          Since 2019, Stories of Asia has been a home for the leaders, teams, and voices shaping this region. We grow people through programmes, a social mentoring community, and the kind of storytelling that turns careers into something worth telling stories about.
+        </p>
+        <div class="hero-ctas reveal reveal-4">
+          <a href="#brands" class="btn btn--orange">Meet our two brands <span class="arrow">→</span></a>
+          <a href="#story" class="btn btn--ghost">Why we started</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TRUST BAR - Clients + Media -->
+    <div class="trust-bar">
+      <div class="trust-block">
+        <div class="trust-label">In good company. We've worked with</div>
+        <div class="trust-logos">
+          <!-- CLIENT LOGO SLOT - replace each div with: <img src="client-logo.png" alt="Client" class="trust-logo"> -->
+          <div class="trust-logo-slot"><span>Client logo</span></div>
+          <div class="trust-logo-slot"><span>Client logo</span></div>
+          <div class="trust-logo-slot"><span>Client logo</span></div>
+          <div class="trust-logo-slot"><span>Client logo</span></div>
+          <div class="trust-logo-slot"><span>Client logo</span></div>
+          <div class="trust-logo-slot"><span>Client logo</span></div>
+        </div>
+      </div>
+
+      <div class="trust-divider"></div>
+
+      <div class="trust-block">
+        <div class="trust-label">As featured in</div>
+        <div class="trust-logos trust-logos--media">
+          <!-- MEDIA LOGO SLOT - replace each div with: <img src="straits-times-logo.png" alt="The Straits Times" class="trust-logo"> -->
+          <div class="trust-logo-slot media"><span>Straits Times</span></div>
+          <div class="trust-logo-slot media"><span>TIME</span></div>
+          <div class="trust-logo-slot media"><span>Statista</span></div>
+          <div class="trust-logo-slot media"><span>Media logo</span></div>
+          <div class="trust-logo-slot media"><span>Media logo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY - real events, scrapbook gallery -->
+<section class="community" id="community">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content: center;">Our community</div>
+      <h2 class="h-section" style="margin-top: 20px;">
+        Real people. Real rooms.<br><span class="serif-accent">Real stories.</span>
+      </h2>
+      <p class="lede" style="margin: 24px auto 0;">
+        The best of our storytelling happens in rooms with founders, operators, HR leaders, and people just starting out. Here's a peek into our community.
+      </p>
+    </div>
+
+    <div class="scrapbook">
+      <!-- POLAROID 1 - replace inner placeholder with: <img src="event-1.jpg" alt="" class="polaroid-img"> -->
+      <div class="polaroid polaroid--1">
+        <div class="polaroid-photo">
+          <div class="photo-placeholder"><span>Event photo</span></div>
+        </div>
+      </div>
+
+      <!-- POLAROID 2 -->
+      <div class="polaroid polaroid--2">
+        <div class="polaroid-photo">
+          <div class="photo-placeholder"><span>Event photo</span></div>
+        </div>
+      </div>
+
+      <!-- POLAROID 3 -->
+      <div class="polaroid polaroid--3">
+        <div class="polaroid-photo">
+          <div class="photo-placeholder"><span>Event photo</span></div>
+        </div>
+      </div>
+
+      <!-- POLAROID 4 -->
+      <div class="polaroid polaroid--4">
+        <div class="polaroid-photo">
+          <div class="photo-placeholder"><span>Event photo</span></div>
+        </div>
+      </div>
+
+      <!-- POLAROID 5 -->
+      <div class="polaroid polaroid--5">
+        <div class="polaroid-photo">
+          <div class="photo-placeholder"><span>Event photo</span></div>
+        </div>
+      </div>
+
+      <!-- POLAROID 6 -->
+      <div class="polaroid polaroid--6">
+        <div class="polaroid-photo">
+          <div class="photo-placeholder"><span>Event photo</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="community-signoff">
+      Every face here is someone we're proud to know. <span class="serif-accent">More soon.</span>
+    </p>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands" id="brands">
+  <div class="container">
+    <div class="brands-head">
+      <div class="eyebrow" style="justify-content: center;">One mission. Two brands.</div>
+      <h2 class="h-section" style="margin-top: 20px;">
+        Built for the way <span class="serif-accent">Asian businesses</span><br>actually grow.
+      </h2>
+      <p class="lede" style="margin: 24px auto 0; text-align: center;">
+        Two focused brands that grow leaders and amplify voices, anchored in the storytelling that makes both stick.
+      </p>
+    </div>
+
+    <div class="brand-grid brand-grid--two">
+      <!-- SEED ACADEMY -->
+      <a href="seed.html" class="brand-card" data-brand="seed">
+        <!-- LOGO SLOT - replace this div with: <img src="seed-academy-logo.png" alt="SEED Academy" class="brand-logo"> -->
+        <div class="brand-logo-slot" data-brand="seed">
+          <span class="logo-placeholder">Add SEED Academy logo here</span>
+        </div>
+        <div class="brand-tag">Leadership Development</div>
+        <p class="brand-desc">
+          Leadership programmes that grow leaders from the inside out. Practical, behavioural, and built around the storytelling that makes lessons actually stick, for managers who need to deliver results, not just sit through theory.
+        </p>
+        <span class="brand-link">Explore SEED Academy <span class="arrow">→</span></span>
+      </a>
+
+      <!-- PERSONAL BRAND LAB -->
+      <a href="pbl.html" class="brand-card" data-brand="pbl">
+        <!-- LOGO SLOT - replace this div with: <img src="pbl-logo.png" alt="Personal Brand Lab" class="brand-logo"> -->
+        <div class="brand-logo-slot" data-brand="pbl">
+          <span class="logo-placeholder">Add Personal Brand Lab logo here</span>
+        </div>
+        <div class="brand-tag">Personal Branding through Storytelling</div>
+        <p class="brand-desc">
+          Personal branding rooted in storytelling. Coaching and done-for-you services that help founders, executives, and operators sharpen their narrative, own their voice, and become known for the work they actually do, and the stories worth telling about it.
+        </p>
+        <span class="brand-link">Explore Personal Brand Lab <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SOA SOCIAL MENTORING - community pillar -->
+<section class="mentoring" id="mentoring">
+  <div class="container">
+    <div class="mentoring-inner">
+      <div class="mentoring-head">
+        <div class="eyebrow" style="justify-content: center;">Community first</div>
+        <h2 class="h-section" style="margin-top: 20px;">
+          More than programmes.<br><span class="serif-accent">A community.</span>
+        </h2>
+        <p class="lede" style="margin: 24px auto 0;">
+          At the heart of Stories of Asia is a social mentoring community where people across the region come to find support, grow into their next chapter, and partner up for what's next. Some of our best storytelling begins here.
+        </p>
+      </div>
+
+      <div class="mentoring-pillars">
+        <div class="pillar">
+          <div class="pillar-ico" aria-hidden="true">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 21v-2a4 4 0 0 0-4-4h-8a4 4 0 0 0-4 4v2"/>
+              <circle cx="14" cy="9" r="4"/>
+              <path d="M28 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M21 5.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="pillar-title">Find support</h3>
+          <p class="pillar-text">A circle of people who get what you're building, going through the same things, and willing to share what they're learning along the way.</p>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-ico" aria-hidden="true">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 28V16"/>
+              <path d="M16 16C16 11 11 8 5 8c0 5 3 11 11 11z"/>
+              <path d="M16 16c0-5 5-8 11-8 0 5-3 11-11 8z"/>
+            </svg>
+          </div>
+          <h3 class="pillar-title">Grow together</h3>
+          <p class="pillar-text">Real mentorship from people a few steps ahead. Honest, ongoing, and built around the kind of storytelling that turns lessons into something you can actually use.</p>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-ico" aria-hidden="true">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4l2.5 5 5.5 1-4 4 1 5.5L16 17l-5 2.5 1-5.5-4-4 5.5-1z"/>
+            </svg>
+          </div>
+          <h3 class="pillar-title">Partner up</h3>
+          <p class="pillar-text">Business and career opportunities that come from being in the right rooms with the right people. Quietly, organically, over time.</p>
+        </div>
+      </div>
+
+      <div class="mentoring-cta">
+        <a href="#gift" class="btn btn--orange">Join the community <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WE STARTED - origin story -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-text">
+        <div class="eyebrow">How it began</div>
+        <h2 class="h-section story-h" style="margin-top: 20px;">
+          We started this because<br>
+          Asia deserves to tell <span class="underline-brush">its own stories</span>.
+        </h2>
+
+        <div class="story-prose">
+          <p>In 2019, we noticed something. The most thoughtful, talented people across Asia were doing remarkable work. Quietly. Without the storytelling to share it, and often without the mentors to help them grow into it.</p>
+          <p>So we started Stories of Asia. A small platform with a simple belief: that this region's people deserve to find their voice through storytelling, and to grow into that voice through mentorship and community.</p>
+          <p class="story-prose-emphasis">Seven years in, that belief still shapes everything we do.</p>
+          <p>Today we're a home for leadership development, technology, and a social mentoring community. But underneath it all, the work is the same: helping the people of Asia tell their stories, find their support, and build the kind of careers and businesses worth telling stories about.</p>
+        </div>
+      </div>
+
+      <!-- FOUNDING INFO - visible immediately, no interaction -->
+      <div class="founding-info">
+        <div class="founding-info-card">
+          <div class="founding-info-eyebrow">Founded in</div>
+          <div class="founding-year-static">2019</div>
+          <p class="founding-info-story">
+            Stories of Asia began in 2019 as a platform to empower the Asian community to find their voice through <em>storytelling</em>, <em>mentorship</em>, and the people they meet along the way. That belief still shapes everything we do today.
+          </p>
+
+          <div class="founding-info-divider">
+            <span>Our community</span>
+          </div>
+
+          <p class="founding-community-line">
+            Stories of Asia thrives on a community of supporters and brand advocates who believe in what we do.
+          </p>
+
+          <div class="founding-creed">
+            <span class="creed-mark">✦</span>
+            <p class="creed-line">
+              We aim to do <span class="creed-good">good</span>,<br>
+              because good <span class="creed-attracts">attracts</span> good.
+            </p>
+            <span class="creed-mark">✦</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION - poster moment -->
+<section class="mission">
+  <div class="container">
+    <div class="mission-inner">
+      <div class="eyebrow" style="justify-content: center; color: rgba(251,243,231,0.7);">Our mission</div>
+      <h2 class="mission-statement">
+        To empower the people of Asia<br>
+        through <span class="serif-accent" style="color: var(--orange-bright);">storytelling</span><br>
+        and <span class="serif-accent" style="color: var(--orange-bright);">technology</span>.
+      </h2>
+      <div class="mission-decor" aria-hidden="true">
+        <span class="mission-star s1">✦</span>
+        <span class="mission-star s2">✦</span>
+        <span class="mission-star s3">✦</span>
+        <span class="mission-star s4">✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFT FORM - playful brand interaction -->
+<section class="gift" id="gift">
+  <div class="container">
+    <div class="gift-inner">
+
+      <!-- INITIAL STATE: pick a problem + email -->
+      <div class="gift-stage gift-stage--form" id="giftFormStage">
+        <div class="gift-head">
+          <div class="eyebrow" style="justify-content: center;">A little something on us</div>
+          <h2 class="h-section" style="margin-top: 20px;">
+            Share the problem.<br>
+            Get a <span class="underline-brush">little gift</span> on us.
+          </h2>
+          <p class="lede" style="margin: 24px auto 0;">
+            Tell us what's stuck. We'll send you a little gift we're sure you can use right away.
+          </p>
+        </div>
+
+        <form class="gift-form" id="giftForm">
+          <!-- Step 1 -->
+          <div class="gift-step gift-step--active">
+            <div class="gift-step-label"><span class="step-num">01</span>Pick what's actually stuck.</div>
+            <div class="gift-tiles">
+              <button type="button" class="gift-tile" data-problem="leaders" data-brand="seed">
+                <div class="tile-ico">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22V12"/><path d="M12 12C12 8 8 6 4 6c0 4 2 8 8 8z"/><path d="M12 12c0-4 4-6 8-6 0 4-2 8-8 6z"/>
+                  </svg>
+                </div>
+                <div class="tile-text">My leaders aren't growing fast enough.</div>
+              </button>
+
+              <button type="button" class="gift-tile" data-problem="mentoring" data-brand="mentoring">
+                <div class="tile-ico">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
+                <div class="tile-text">I'd love to find a mentor or community.</div>
+              </button>
+
+              <button type="button" class="gift-tile" data-problem="visible" data-brand="pbl">
+                <div class="tile-ico">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/>
+                  </svg>
+                </div>
+                <div class="tile-text">Our senior people are invisible online.</div>
+              </button>
+
+              <button type="button" class="gift-tile" data-problem="other" data-brand="soa">
+                <div class="tile-ico">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div class="tile-text">Something else. I'll tell you below.</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2 - revealed after a tile is picked -->
+          <div class="gift-step gift-step--2" id="giftStep2">
+            <div class="gift-step-label"><span class="step-num">02</span>Where do we send your gift?</div>
+
+            <div class="gift-fields">
+              <div class="gift-field">
+                <label for="giftEmail">Your work email</label>
+                <input id="giftEmail" type="email" placeholder="you@company.com" required>
+              </div>
+              <div class="gift-field">
+                <label for="giftDetail">In one line, what's the actual problem? <span class="opt">(optional)</span></label>
+                <input id="giftDetail" type="text" placeholder="e.g. 8 new managers, none of them ready to actually manage…">
+              </div>
+              <button type="submit" class="gift-submit">
+                Send me my gift <span class="arrow">→</span>
+              </button>
+              <div class="gift-fineprint">
+                No follow-up sequence. No sales call. Just the gift.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- SUCCESS STATE - gift box reveal -->
+      <div class="gift-stage gift-stage--success" id="giftSuccessStage" hidden>
+        <div class="gift-box-stage">
+          <!-- sparkles -->
+          <span class="sparkle s1">✦</span>
+          <span class="sparkle s2">✦</span>
+          <span class="sparkle s3">✦</span>
+          <span class="sparkle s4">✦</span>
+          <span class="sparkle s5">✦</span>
+          <span class="sparkle s6">✦</span>
+          <span class="sparkle s7">✦</span>
+          <span class="sparkle s8">✦</span>
+
+          <!-- gift box -->
+          <svg class="gift-box" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- box base -->
+            <g class="box-base">
+              <rect x="30" y="80" width="140" height="100" rx="6" fill="#F05A1A"/>
+              <!-- vertical ribbon -->
+              <rect x="92" y="80" width="16" height="100" fill="#C8430A"/>
+              <!-- box shadow on bottom -->
+              <rect x="30" y="170" width="140" height="10" fill="#C8430A" opacity="0.5"/>
+            </g>
+            <!-- box lid -->
+            <g class="box-lid">
+              <rect x="22" y="64" width="156" height="24" rx="4" fill="#FF7536"/>
+              <!-- horizontal ribbon -->
+              <rect x="92" y="64" width="16" height="24" fill="#C8430A"/>
+              <!-- bow -->
+              <g class="bow">
+                <ellipse cx="80" cy="56" rx="14" ry="10" fill="#F05A1A"/>
+                <ellipse cx="120" cy="56" rx="14" ry="10" fill="#F05A1A"/>
+                <rect x="94" y="50" width="12" height="14" rx="2" fill="#C8430A"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="gift-result">
+          <div class="eyebrow" style="justify-content: center; color: var(--orange);">Got it!</div>
+          <h2 class="h-section gift-name" style="margin-top: 16px;">Your gift is on its way.</h2>
+          <p class="lede gift-sub" style="margin: 20px auto 32px;">Watch your inbox. We've picked something we think will land just right for what you shared.</p>
+
+          <div class="gift-also">
+            <div class="gift-also-ico">✉</div>
+            <div>
+              <div class="gift-also-title">Sent to <span id="giftEmailEcho">your inbox</span></div>
+              <div class="gift-also-sub">From the Stories of Asia team. Keep an eye out.</div>
+            </div>
+          </div>
+
+          <button type="button" class="gift-reset" id="giftReset">
+            Send another <span class="arrow">→</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    // We don't tell the user what they're getting upfront. The team picks per case.
+    // The tile they pick is captured (so we know the category), but the success state stays warm-and-mysterious.
+    const tiles = document.querySelectorAll('.gift-tile');
+    const step2 = document.getElementById('giftStep2');
+    const form = document.getElementById('giftForm');
+    const formStage = document.getElementById('giftFormStage');
+    const successStage = document.getElementById('giftSuccessStage');
+    const emailEcho = document.getElementById('giftEmailEcho');
+    const resetBtn = document.getElementById('giftReset');
+
+    let selected = null;
+
+    tiles.forEach(t => {
+      t.addEventListener('click', () => {
+        tiles.forEach(x => x.classList.remove('selected'));
+        t.classList.add('selected');
+        selected = t.dataset.problem;
+        step2.classList.add('revealed');
+        setTimeout(() => {
+          step2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!selected) {
+        document.querySelector('.gift-tiles').classList.add('shake');
+        setTimeout(() => document.querySelector('.gift-tiles').classList.remove('shake'), 500);
+        return;
+      }
+      const email = document.getElementById('giftEmail').value;
+      emailEcho.textContent = email;
+
+      formStage.style.opacity = '0';
+      formStage.style.pointerEvents = 'none';
+      setTimeout(() => {
+        formStage.hidden = true;
+        successStage.hidden = false;
+        void successStage.offsetWidth;
+        successStage.classList.add('revealed');
+      }, 400);
+    });
+
+    resetBtn.addEventListener('click', () => {
+      successStage.classList.remove('revealed');
+      successStage.hidden = true;
+      formStage.hidden = false;
+      formStage.style.opacity = '1';
+      formStage.style.pointerEvents = 'auto';
+      tiles.forEach(x => x.classList.remove('selected'));
+      step2.classList.remove('revealed');
+      selected = null;
+      form.reset();
+      window.scrollTo({ top: formStage.offsetTop - 80, behavior: 'smooth' });
+    });
+  })();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid footer-grid--3">
+      <div>
+        <div class="footer-brand">
+          <span class="nav-logo-mark"></span>
+          Stories of Asia
+        </div>
+        <p class="footer-tagline">When people grow, businesses grow. Built for Asia, headquartered in Singapore.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Brands</h4>
+        <ul>
+          <li><a href="seed.html">SEED Academy</a></li>
+          <li><a href="pbl.html">Personal Brand Lab</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:soa@storiesofasia.co">soa@storiesofasia.co</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Stories of Asia. All rights reserved.</div>
+      <div>Empowering the people of Asia.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
